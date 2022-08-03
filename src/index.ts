@@ -11,6 +11,12 @@ type QueryParams = {
   value?: string | number,
 }
 
+type CarObject = {
+  name: string,
+  color: string,
+  id?: number
+}
+
 // ([{key:'_page', value: 0}, {key: '_limit', value: 1}]);
 const generateQueryString = (queryParams: QueryParams[]) => queryParams.length
   ? `?${queryParams.map(item => `${item.key}=${item.value}`).join('&')}`
@@ -24,15 +30,35 @@ const getCars = async(queryParams: QueryParams[]) => {
   return cars;
 }
 
-const getCar = async (id: number) => {
+const getCar = async(id: number) => {
   const response = await fetch(`${baseUrl}${path.garage}/${id}`);
   const car = await response.json();
   return car; 
 }
 
+
+const createCar = async(carObj: CarObject) => {
+  const response = await fetch(`${baseUrl}${path.garage}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(carObj)
+  });
+  const carItem = await response.json();
+  return carItem; 
+}
+
+
+
+
 const main = async () => {
-  const car = await getCar(4);
+  const car = await createCar({
+    name: 'Audi',
+    color: 'black',
+  });
   console.log(car); 
+  const cars = await getCars([{key:'_page', value: 0}])
 }
 
 main();
