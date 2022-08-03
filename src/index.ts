@@ -59,17 +59,21 @@ const updateCar = async(id: number, carObj: CarObject) => {
   });
   const carItem = await response.json();
   return carItem; 
+};
+
+const deleteCar = async(id: number) => {
+  const response = await fetch(`${baseUrl}${path.garage}/${id}`, {
+    method: 'DELETE',
+  });
+  const carItem = await response.json();
+  return carItem; 
 }
 
 
 
 
 const main = async () => {
-  const updateCarObj = await updateCar(10, {
-    name: 'Lexus',
-    color: 'red'
-  })
-  console.log(); 
+  const updateCarObj = await deleteCar(6);
   const cars = await getCars([{key:'_page', value: 0}])
 };
 
