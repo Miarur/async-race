@@ -9,13 +9,12 @@ const path = {
 type QueryParams = {
   key?: string,
   value?: string | number,
-}
+};
 
 type CarObject = {
   name: string,
   color: string,
-  id?: number
-}
+};
 
 // ([{key:'_page', value: 0}, {key: '_limit', value: 1}]);
 const generateQueryString = (queryParams: QueryParams[]) => queryParams.length
@@ -28,18 +27,31 @@ const getCars = async(queryParams: QueryParams[]) => {
   console.log(cars);  
   console.log(`total count => ${Number(response.headers.get('X-Total-Count'))}`);
   return cars;
-}
+};
 
 const getCar = async(id: number) => {
   const response = await fetch(`${baseUrl}${path.garage}/${id}`);
   const car = await response.json();
   return car; 
-}
+};
 
 
 const createCar = async(carObj: CarObject) => {
   const response = await fetch(`${baseUrl}${path.garage}`, {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(carObj)
+  });
+  const carItem = await response.json();
+  return carItem; 
+};
+
+
+const updateCar = async(id: number, carObj: CarObject) => {
+  const response = await fetch(`${baseUrl}${path.garage}/${id}`, {
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -53,12 +65,12 @@ const createCar = async(carObj: CarObject) => {
 
 
 const main = async () => {
-  const car = await createCar({
-    name: 'Audi',
-    color: 'black',
-  });
-  console.log(car); 
+  const updateCarObj = await updateCar(10, {
+    name: 'Lexus',
+    color: 'red'
+  })
+  console.log(); 
   const cars = await getCars([{key:'_page', value: 0}])
-}
+};
 
 main();
