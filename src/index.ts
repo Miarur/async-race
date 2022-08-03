@@ -1,3 +1,4 @@
+import './index.css'
 import {generateQueryString, getCars, getCar, createCar, updateCar, deleteCar} from './api/api';
 
 const main = async () => {
