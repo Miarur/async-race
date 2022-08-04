@@ -1,3 +1,14 @@
+
+export const renderCarImage = async() => {
+  const html = `
+    <img class="car_image" src="./car.svg" alt="car">
+  `;
+  const carImage = document.createElement('div');
+  carImage.innerHTML = html; 
+  document.body.appendChild(carImage); 
+}
+
+
 export const renderMain = async () => {
   const html = `
   <div class="menu">
