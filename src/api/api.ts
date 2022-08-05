@@ -73,3 +73,10 @@ export const getWinners = async(queryParams: QueryParams[]) => {
   console.log(`total count => ${Number(response.headers.get('X-Total-Count'))}`);
   return totalWinners;
 };
+
+
+export const getWinner = async(id: number) => {
+  const response = await fetch(`${winners}/${id}`);
+  const itemWinner = await response.json();
+  return itemWinner; 
+};
