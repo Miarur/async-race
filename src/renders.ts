@@ -1,6 +1,5 @@
 
-export const renderCarImage = async() => {
-  const html = `
+export const renderCarImage = () =>`
   <?xml version="1.0" encoding="iso-8859-1"?>
   <!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 499.999 499.999" style="enable-background:new 0 0 499.999 499.999;" xml:space="preserve">
@@ -82,9 +81,32 @@ export const renderCarImage = async() => {
     <g></g>
     <g></g>
   </svg>
+`;
+
+
+export const renderCar = () => {
+  const html = `
+    <div class="general-buttons">
+      <button class="select-button" id="select-car">Select</button>
+      <button class="remove-button" id="remove-car">Remove</button>
+      <span class="car-name">Mercedes</span>
+    </div>
+    <div class="road">
+      <div class="launch-pad">
+        <div class="control-panel">
+          <button class="start-engine" id="start-engine">A</button>
+          <button class="stop-engine" id="stop-engine">B</button>
+        </div>
+        <div class="car" id="car">
+          <div class="car_image">
+            ${renderCarImage()}
+          </div>
+        </div>
+      </div>
+      <div class="flag" id="flag"></div>
+    </div>
   `;
   const carImage = document.createElement('div');
-  carImage.classList.add('car_image')
   carImage.innerHTML = html; 
   document.body.appendChild(carImage); 
 }
