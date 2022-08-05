@@ -117,3 +117,15 @@ export const updateWinner = async(id: number, winner: CarWinner) => {
   const itemWinner = await response.json();
   return itemWinner; 
 };
+
+export const engineStartStop = async(id: number, status: 'started'|'stopped') => {
+  const response = await fetch(`${engine}?id=${id}&status=${status}`, {method: 'PATCH'});
+  const engineState = await response.json();
+  return engineState; 
+};
+
+export const engineState = async(id: number, status: 'drive') => {
+  const response = await fetch(`${engine}?id=${id}&status=${status}`, {method: 'PATCH'});
+  const engineState = await response.json();
+  return engineState; 
+};
