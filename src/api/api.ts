@@ -14,6 +14,12 @@ type CarObject = {
   color: string,
 };
 
+type CarWinner = {
+  wins: number,
+  time: number,
+  id?: number,
+}
+
 // ([{key:'_page', value: 0}, {key: '_limit', value: 1}]);
 export const generateQueryString = (queryParams: QueryParams[]) => queryParams.length
   ? `?${queryParams.map(item => `${item.key}=${item.value}`).join('&')}`
@@ -74,9 +80,40 @@ export const getWinners = async(queryParams: QueryParams[]) => {
   return totalWinners;
 };
 
-
 export const getWinner = async(id: number) => {
   const response = await fetch(`${winners}/${id}`);
+  const itemWinner = await response.json();
+  return itemWinner; 
+};
+
+export const createWinner = async(winner: CarWinner) => {
+  const response = await fetch(`${winners}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(winner)
+  });
+  const itemWinner = await response.json();
+  return itemWinner; 
+};
+
+export const deleteWinner = async(id: number) => {
+  const response = await fetch(`${winners}/${id}`, {
+    method: 'DELETE',
+  });
+  const itemWinner = await response.json();
+  return itemWinner; 
+}
+
+export const updateWinner = async(id: number, winner: CarWinner) => {
+  const response = await fetch(`${winners}/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(winner)
+  });
   const itemWinner = await response.json();
   return itemWinner; 
 };
