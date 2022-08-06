@@ -20,18 +20,24 @@ type CarWinner = {
   id?: number,
 }
 
+interface IResponseCars {
+  cars: CarObject[],
+  totalCount: number,
+}
+
 // ([{key:'_page', value: 0}, {key: '_limit', value: 1}]);
 export const generateQueryString = (queryParams: QueryParams[]) => queryParams.length
   ? `?${queryParams.map(item => `${item.key}=${item.value}`).join('&')}`
   : '';
 
-export const getCars = async(queryParams: QueryParams[]) => {
+export const getCars = async(queryParams: QueryParams[]): Promise<IResponseCars> => {
   const response = await fetch(`${garage}${generateQueryString(queryParams)}`); 
-  const cars = await response.json(); 
-  console.log(cars);  
-  console.log(`total count => ${Number(response.headers.get('X-Total-Count'))}`);
-  return cars;
+  return {
+    cars: await response.json(), 
+    totalCount: Number(response.headers.get('X-Total-Count')),
+  };
 };
+
 
 export const getCar = async(id: number) => {
   const response = await fetch(`${garage}/${id}`);

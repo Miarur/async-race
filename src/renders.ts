@@ -1,3 +1,8 @@
+import { getCars } from './api/api'
+
+const { totalCount} = await getCars([{key:'_page', value: 1}, {key: '_limit', value: 5}]); 
+
+
 export const renderCarImage = () => `
   <?xml version="1.0" encoding="iso-8859-1"?>
   <!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
@@ -125,34 +130,45 @@ export const renderFlag = () => `
 </svg>
 `;
 
-export const renderCar = () => {
-  const html = `
-    <div class="general-buttons">
-      <button class="select-button" id="select-car">Select</button>
-      <button class="remove-button" id="remove-car">Remove</button>
-      <span class="car-name">Mercedes</span>
-    </div>
-    <div class="road">
-      <div class="launch-pad">
-        <div class="control-panel">
-          <button class="start-engine" id="start-engine">A</button>
-          <button class="stop-engine" id="stop-engine">B</button>
-        </div>
-        <div class="car" id="car">
-          <div class="car_image">
-            ${renderCarImage()}
+export const renderCar = () =>`
+    <div class="car__wrap">
+      <div class="general-buttons">
+        <button class="select-button" id="select-car">Select</button>
+        <button class="remove-button" id="remove-car">Remove</button>
+        <span class="car-name">Mercedes</span>
+      </div>
+      <div class="road">
+        <div class="launch-pad">
+          <div class="control-panel">
+            <button class="start-engine" id="start-engine">A</button>
+            <button class="stop-engine" id="stop-engine">B</button>
+          </div>
+          <div class="car" id="car">
+            <div class="car_image">
+              ${renderCarImage()}
+            </div>
           </div>
         </div>
-      </div>
-      <div class="flag" id="flag">
-        ${renderFlag()}
+        <div class="flag" id="flag">
+          ${renderFlag()}
+        </div>
       </div>
     </div>
+`;
+
+
+export const renderGarage = () => {
+ const html = `
+   <h1>Garage ( ${totalCount} )</h1>
+   <h2>Page #</h2>
+   <ul class="garage__list">
+    <li>${renderCar()}</li>
+   </ul>
   `;
-  const car = document.createElement("div");
-  car.classList.add("car__wrap");
-  car.innerHTML = html;
-  document.body.appendChild(car);
+  const garage = document.createElement("div");
+  garage.innerHTML = html;
+  document.body.appendChild(garage);
+
 };
 
 export const renderMain = async () => {

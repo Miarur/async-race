@@ -48,6 +48,9 @@ button:active {
   background: rgba( 20, 224, 133, 1 );
 }
 
+h1, h2 {
+  color: #fff;
+}
 
 .menu {
   display: flex;
@@ -120,4 +123,14 @@ button:active {
   padding: 0px;
 }
 
+.garage__list {
+  margin: 0px;
+  padding: 0px;
+}
+
+li {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
 
