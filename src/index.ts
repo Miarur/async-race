@@ -13,7 +13,7 @@ import {
   createWinner, 
   deleteWinner, 
   updateWinner} from './api/api';
-import {renderMain, renderGarage} from './renders'
+import {renderMain, renderGarage, renderWinners} from './renders'
 
 
 const main = async () => {
