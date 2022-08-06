@@ -67,9 +67,28 @@ button:active {
   padding: 20px 0px 0px 0px;
 }
 
+.road {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: dashed white;
+}
+
+.car-name {
+  color: white;
+  font-family:Georgia, 'Times New Roman', Times, serif; 
+  font-size: 20px;
+  font-weight: 500;
+}
+
 .form {
   margin: 0px;
   padding: 10px 0px 0px 0px;
+}
+
+.control-panel {
+  margin-top: 10px;
 }
 
 .race-controls {
@@ -81,12 +100,24 @@ button:active {
   padding: 10px 0px 0px 0px;
 }
 
-.car_image {
-  max-width: 150px;
-  max-height: 60px;
-  transform: scale(-1, 1)
+.car {
+  margin-top: 15px;
+  
 }
 
-/* svg {
-  fill: #141322;
-} */
+.car_image {
+  transform: scale(-1, 1);
+}
+
+.car__wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.flag {
+  margin: 0px; 
+  padding: 0px;
+}
+
+
