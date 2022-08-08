@@ -56,7 +56,8 @@ h1, h2 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 0px 20px;
   margin: 0px;
   padding: 0px;
 }
@@ -98,9 +99,17 @@ h1, h2 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 0px 20px;
   margin: 0px;
   padding: 10px 0px 0px 0px;
+}
+
+.form__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 .car {
@@ -112,10 +121,8 @@ h1, h2 {
   transform: scale(-1, 1);
 }
 
-.car__wrapper {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+.car__wrap {
+  margin-top: 20px;
 }
 
 .flag {

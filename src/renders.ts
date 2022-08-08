@@ -1,5 +1,5 @@
 import { getCars, CarObject } from './api/api'
-import { store } from './store';
+import { store, locationResolver} from './store';
 
 const { totalCount} = await getCars([{key:'_page', value: 1}, {key: '_limit', value: 5}]); 
 
@@ -9,10 +9,10 @@ const randColor = () => {
 }
 
 
-export const renderCarImage = () => `
+export const renderCarImage = (color : string) => `
   <?xml version="1.0" encoding="iso-8859-1"?>
   <!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-  <svg version="1.1" id="Capa_1" fill="${randColor()}" xmlns="http://www.w3.org/2000/svg" width="180px" height="80px"  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-190 100 700 250" style="enable-background:new 0 0 499.999 499.999;" xml:space="preserve">
+  <svg version="1.1" id="Capa_1" fill="${color}" xmlns="http://www.w3.org/2000/svg" width="180px" height="80px"  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-190 100 700 250" style="enable-background:new 0 0 499.999 499.999;" xml:space="preserve">
     <g>
       <path id="path3796_1_" d="M282.253,146.255c-0.832,1.213-1.739,1.719-2.812,2.094
       c-3.491,1.218-6.694,1.779-10.781,2.281c-6.247,0.768-12.975,2.037-19.125,3.375c-7.867,1.711-15.588,4.027-23.25,6.5
@@ -97,7 +97,7 @@ export const renderFlag = () => `
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Capa_1" fill="FFFF00" width="100px" height="80px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 -100 800 350" style="enable-background:new 0 0 447.514 447.514;" xml:space="preserve">
+<svg version="1.1" id="Capa_1" fill="#FF0000" width="100px" height="80px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 -100 800 350" style="enable-background:new 0 0 447.514 447.514;" xml:space="preserve">
 	<path d="M389.183,10.118c-3.536-2.215-7.963-2.455-11.718-0.634l-50.653,24.559c-35.906,17.409-77.917,16.884-113.377-1.418
 	c-38.094-19.662-83.542-18.72-120.789,2.487V20c0-11.046-8.954-20-20-20s-20,8.954-20,20v407.514c0,11.046,8.954,20,20,20
 	s20-8.954,20-20V220.861c37.246-21.207,82.694-22.148,120.789-2.487c35.46,18.302,77.47,18.827,113.377,1.418l56.059-27.18
@@ -139,8 +139,8 @@ export const renderFlag = () => `
 export const renderCar = ({id, name, color}: CarObject) =>`
     <div class="car__wrap">
       <div class="general-buttons">
-        <button class="select-button" id="select-car">Select</button>
-        <button class="remove-button" id="remove-car">Remove</button>
+        <button class="select-button" id="select-car-${id}">Select</button>
+        <button class="remove-button" id="remove-car-${id}">Remove</button>
         <span class="car-name">${name}</span>
       </div>
       <div class="road">
@@ -151,11 +151,11 @@ export const renderCar = ({id, name, color}: CarObject) =>`
           </div>
           <div class="car" id="car-${id}">
             <div class="car_image">
-              ${renderCarImage()}
+              ${renderCarImage(color)}
             </div>
           </div>
         </div>
-        <div class="flag" id="flag">
+        <div class="flag" id="flag-${id}">
           ${renderFlag()}
         </div>
       </div>
@@ -163,30 +163,28 @@ export const renderCar = ({id, name, color}: CarObject) =>`
 `;
 
 
-export const renderGarage = () => {
- const html = `
-   <h1>Garage ( ${store.carsCount} )</h1>
-   <h2>Page #</h2>
-   <ul class="garage__list">
-    <li>${store.cars.map(item => {
-      return renderCar(item)
-    })}</li>
-   </ul>
-  `;
-  const garage = document.createElement("div");
-  garage.innerHTML = html;
-  document.body.appendChild(garage);
+export const renderGarage = () => `
+  <div class='garage__body'>
+    <h1>Garage ( ${store.carsCount} )</h1>
+    <h2>Page #${store.carsPage}</h2>
+    <ul class="garage__list">
+      <li>${store.cars.map(item => {
+        return renderCar(item)
+      }).join('')}</li>
+    </ul>
+  </div>
+`;
 
-};
+
 
 export const renderMain = async () => {
   const html = `
   <div class="menu">
-    <button class="garage">To garage</button>
-    <button class="winners">To winners</button>
+    <button class="garage" onclick="location.href='http://localhost:8080/${locationResolver('/garage/')}';" value="Go garage" type="button">To garage</button>
+    <button class="winners" onclick="location.href='http://localhost:8080/${locationResolver('/winners/')}';" type="button">To winners</button>
   </div>
   <div id="garage">
-    <div>
+    <div class="form__wrapper">
       <form class="form" id="create">
         <input class="input" id="input-create-name" name="name" type="text">
         <input class="color" id="input-create-color" name="color" type="color" value="#ffffff">
@@ -204,9 +202,13 @@ export const renderMain = async () => {
       <button class="button" id="generate">Generate cars</button>
     </div>
   </div>
+
+  <div id='#app'>
+    ${renderGarage()}
+  </div>
   `;
   const root = document.createElement("div");
-  root.classList.add("wrapper");
+  root.classList.add('main')
   root.innerHTML = html;
   document.body.appendChild(root);
 };
@@ -238,10 +240,15 @@ export const renderTable = () => `
 `; 
 
 export const renderWinners = () => {
-  const html = `${renderTable()}`;
+  const html = `
+  <button class="garage" onclick="location.href='http://localhost:8080/#';" value="Go garage" type="button">To garage</button>
+  ${renderTable()}
+  `;
 
   const root = document.createElement("div");
   root.classList.add("wrapper");
   root.innerHTML = html;
   document.body.appendChild(root);
 }
+
+
