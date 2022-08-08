@@ -4,10 +4,15 @@ import { store } from './store';
 const { totalCount} = await getCars([{key:'_page', value: 1}, {key: '_limit', value: 5}]); 
 
 
-export const renderCarImage = (color : string) => `
+const randColor = () => {
+  return "#" + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0').toUpperCase();
+}
+
+
+export const renderCarImage = () => `
   <?xml version="1.0" encoding="iso-8859-1"?>
   <!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-  <svg version="1.1" id="Capa_1" fill="${color}" xmlns="http://www.w3.org/2000/svg" width="180px" height="80px"  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-190 100 700 250" style="enable-background:new 0 0 499.999 499.999;" xml:space="preserve">
+  <svg version="1.1" id="Capa_1" fill="${randColor()}" xmlns="http://www.w3.org/2000/svg" width="180px" height="80px"  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-190 100 700 250" style="enable-background:new 0 0 499.999 499.999;" xml:space="preserve">
     <g>
       <path id="path3796_1_" d="M282.253,146.255c-0.832,1.213-1.739,1.719-2.812,2.094
       c-3.491,1.218-6.694,1.779-10.781,2.281c-6.247,0.768-12.975,2.037-19.125,3.375c-7.867,1.711-15.588,4.027-23.25,6.5
@@ -146,7 +151,7 @@ export const renderCar = ({id, name, color}: CarObject) =>`
           </div>
           <div class="car" id="car-${id}">
             <div class="car_image">
-              ${renderCarImage('#FF0000')}
+              ${renderCarImage()}
             </div>
           </div>
         </div>
