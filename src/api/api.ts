@@ -4,23 +4,24 @@ const engine = `${baseUrl}/engine`;
 const winners = `${baseUrl}/winners`; 
 
 
-type QueryParams = {
+export type QueryParams = {
   key?: string,
   value?: string | number,
 };
 
-type CarObject = {
+export type CarObject = {
   name: string,
   color: string,
+  id?: number,
 };
 
-type CarWinner = {
+export type CarWinner = {
   wins: number,
   time: number,
   id?: number,
 }
 
-interface IResponseCars {
+export interface IResponseCars {
   cars: CarObject[],
   totalCount: number,
 }
