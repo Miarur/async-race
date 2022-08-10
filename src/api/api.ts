@@ -1,30 +1,9 @@
+import { QueryParams, CarObject, CarWinner, IResponseCars } from '../types/apiTypes';
+
 const baseUrl = 'http://127.0.0.1:3000';
 const garage = `${baseUrl}/garage`; 
 const engine = `${baseUrl}/engine`; 
 const winners = `${baseUrl}/winners`; 
-
-
-export type QueryParams = {
-  key?: string,
-  value?: string | number,
-};
-
-export type CarObject = {
-  name: string,
-  color: string,
-  id?: number,
-};
-
-export type CarWinner = {
-  wins: number,
-  time: number,
-  id?: number,
-}
-
-export interface IResponseCars {
-  cars: CarObject[],
-  totalCount: number,
-}
 
 // ([{key:'_page', value: 0}, {key: '_limit', value: 1}]);
 export const generateQueryString = (queryParams: QueryParams[]) => queryParams.length

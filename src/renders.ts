@@ -1,11 +1,5 @@
-import { getCars, CarObject } from './api/api'
+import { CarObject } from './types/apiTypes'
 import { store } from './store';
-
-
-const randomColor = () => {
-  return "#" + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0').toUpperCase();
-}
-
 
 export const renderCarImage = (color : string) => `
   <?xml version="1.0" encoding="iso-8859-1"?>

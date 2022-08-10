@@ -1,20 +1,14 @@
 import './index.css'
-import {
-  generateQueryString, 
-  getCars, 
+import { 
   getCar, 
   createCar, 
   updateCar, 
   deleteCar, 
-  engineStartStop,
-  engineState,
-  getWinners, 
-  getWinner, 
-  createWinner, 
-  deleteWinner, 
-  updateWinner, CarObject} from './api/api';
-import {renderMain, renderGarage, renderWinners} from './renders'
-import { store } from './store';
+}
+from './api/api';
+import {CarObject } from './types/apiTypes';
+import {renderMain} from './renders'
+
 
 
 const RENDER_HEADER =  renderMain();

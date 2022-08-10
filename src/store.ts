@@ -1,13 +1,7 @@
-import { getCars, getWinners, CarObject} from "./api/api";
-import { renderWinners, renderGarage, renderMain } from './renders';
+import { State} from "./types/storeTypes";
+import { getCars} from "./api/api";
 
 const { cars: carList, totalCount: countCars } = await getCars([{key:'_page', value: 1}, {key: '_limit', value: 10}]); 
-
-type State = {
-  carsPage: number,
-  cars: CarObject[],
-  carsCount: number,
-}
 
 export const store: State = {
   carsPage: 1, 
