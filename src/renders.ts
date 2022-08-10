@@ -1,10 +1,8 @@
 import { getCars, CarObject } from './api/api'
-import { store, locationResolver} from './store';
-
-const { totalCount} = await getCars([{key:'_page', value: 1}, {key: '_limit', value: 5}]); 
+import { store } from './store';
 
 
-const randColor = () => {
+const randomColor = () => {
   return "#" + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0').toUpperCase();
 }
 
@@ -180,15 +178,15 @@ export const renderGarage = () => `
 export const renderMain = async () => {
   const html = `
   <div class="menu">
-    <button class="garage" onclick="location.href='http://localhost:8080/${locationResolver('/garage/')}';" value="Go garage" type="button">To garage</button>
-    <button class="winners" onclick="location.href='http://localhost:8080/${locationResolver('/winners/')}';" type="button">To winners</button>
+    <button class="garage" type="button">To garage</button>
+    <button class="winners" type="button">To winners</button>
   </div>
   <div id="garage">
     <div class="form__wrapper">
       <form class="form" id="create">
-        <input class="input" id="input-create-name" name="name" type="text">
+        <input class="input" id="input-create-name" name="name" type="text" >
         <input class="color" id="input-create-color" name="color" type="color" value="#ffffff">
-        <button class="button" type="submit">Create car</button>
+        <button class="button create-car" type="submit">Create car</button>
       </form>
       <form class="form" id="update">
         <input class="input" id="input-update-name" name="name" type="text" disabled>
@@ -241,7 +239,6 @@ export const renderTable = () => `
 
 export const renderWinners = () => {
   const html = `
-  <button class="garage" onclick="location.href='http://localhost:8080/#';" value="Go garage" type="button">To garage</button>
   ${renderTable()}
   `;
 
@@ -250,5 +247,6 @@ export const renderWinners = () => {
   root.innerHTML = html;
   document.body.appendChild(root);
 }
+
 
 
