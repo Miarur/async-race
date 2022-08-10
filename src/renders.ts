@@ -184,14 +184,14 @@ export const renderMain = async () => {
   <div id="garage">
     <div class="form__wrapper">
       <form class="form" id="create">
-        <input class="input" id="input-create-name" name="name" type="text" >
+        <input class="input" id="input-create-name" name="name" type="text">
         <input class="color" id="input-create-color" name="color" type="color" value="#ffffff">
         <button class="button create-car" type="submit">Create car</button>
       </form>
       <form class="form" id="update">
         <input class="input" id="input-update-name" name="name" type="text" disabled>
         <input class="color" id="input-update-color" name="color" type="color" value="#ffffff" disabled>
-        <button class="button" id="update-submit" type="submit">Update car</button>
+        <button class="button update-car" id="update-submit" type="submit">Update car</button>
       </form>
     </div>
     <div class="race-controls">
