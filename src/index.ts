@@ -25,7 +25,7 @@ const listeners = async () => {
   await addRandomCars(); 
   await updateDeleteCarObj(); 
   await pagination(); 
-  renderViews()
+  await renderViews();
 }
 
 listeners();

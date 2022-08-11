@@ -4,11 +4,12 @@ import { renderGarage } from '../renders/renderGarage';
 import { updateStore } from '../pagination/pagination';
 
 export const renderViews = async () => {
+  
   const viewWinners = document.querySelector('.winners') as HTMLButtonElement;
   const viewGarage = document.querySelector('.garage') as HTMLButtonElement;
   const app = document.getElementById('app') as HTMLElement; 
 
-  viewWinners?.addEventListener('click', (event: Event) => {
+  viewWinners?.addEventListener('click', (event: Event) => { 
     event.preventDefault(); 
     store.view = 'winners'; 
     app.innerHTML = `${renderTable()}`; 
@@ -16,7 +17,7 @@ export const renderViews = async () => {
   });  
 
   viewGarage?.addEventListener('click', (event: Event) => {
-    event.preventDefault(); 
+    event.preventDefault();
     store.view = 'garage'; 
     app.innerHTML = `${renderGarage()}`; 
     updateStore(); 
