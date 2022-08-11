@@ -1,0 +1,238 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: rgb(63,94,251);
+  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  outline: 0;
+  -webkit-appearance: none;
+}
+
+button {
+  display: inline-block;
+  position: relative;
+  padding: 5px 8px;
+  top: 0;
+  font-size: 21px;
+  font-family: "Open Sans", Helvetica;
+  border-radius: 4px;
+  border-bottom: 1px solid rgba( 28, 227, 125, 0.5 );
+  background: rgba( 22, 230, 137, 1 );
+  color: #fff;
+  box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.1 );
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  top: -5px;
+  box-shadow: 0px 10px 10px rgba( 15, 165, 60, 0.2 );
+}
+
+button:active {
+  top: 0px;
+  box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.0 );
+  background: rgba( 20, 224, 133, 1 );
+}
+
+h1, h2 {
+  color: #fff;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0px 20px;
+  margin: 0px;
+  padding: 0px;
+}
+
+#garage {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 0px;
+  padding: 20px 0px 0px 0px;
+}
+
+.road {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: dashed white;
+}
+
+.car-name {
+  color: white;
+  font-family:Georgia, 'Times New Roman', Times, serif; 
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.form {
+  margin: 0px;
+  padding: 10px 0px 0px 0px;
+}
+
+.control-panel {
+  margin-top: 10px;
+}
+
+.race-controls {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0px 20px;
+  margin: 0px;
+  padding: 10px 0px 0px 0px;
+}
+
+.form__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.car {
+  margin-top: 15px;
+  
+}
+
+.car_image {
+  transform: scale(-1, 1);
+}
+
+.car__wrap {
+  margin-top: 20px;
+}
+
+.flag {
+  margin: 0px; 
+  padding: 0px;
+}
+
+.garage__list {
+  margin: 0px;
+  padding: 0px;
+}
+
+li {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+
+
+/* TABLE */ 
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+
+.pagination {
+  margin-top: 30px;
+  margin-bottom: 60px;
+}
+
+.pagination-prev,
+.pagination-next {
+  background: #b1e232;
+  width: 150px;
+  margin-left: 20px;
+}
