@@ -1,4 +1,7 @@
+import './index.css'
 import {renderMain} from './components/renders/renders';
+
+
 import { addCarObj } from './components/listeners/addCarObj';
 import { addRandomCars } from './components/listeners/addRandomCars';
 import { updateDeleteCarObj } from './components/listeners/updateDeleteCar';
@@ -12,5 +15,6 @@ const listeners = async () => {
   await updateDeleteCarObj(); 
   await pagination(); 
 }
+
 listeners();
 
