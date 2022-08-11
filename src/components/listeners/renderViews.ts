@@ -9,14 +9,14 @@ export const renderViews = async () => {
   const viewGarage = document.querySelector('.garage') as HTMLButtonElement;
   const app = document.getElementById('app') as HTMLElement; 
 
-  viewWinners?.addEventListener('click', (event: Event) => { 
+  viewWinners.addEventListener('click', (event: Event) => { 
     event.preventDefault(); 
     store.view = 'winners'; 
     app.innerHTML = `${renderTable()}`; 
     updateStore(); 
   });  
 
-  viewGarage?.addEventListener('click', (event: Event) => {
+  viewGarage.addEventListener('click', (event: Event) => {
     event.preventDefault();
     store.view = 'garage'; 
     app.innerHTML = `${renderGarage()}`; 
