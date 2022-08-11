@@ -8,7 +8,7 @@ import {
 }
 from './api/api';
 import {CarObject } from './types/apiTypes';
-import {renderCar, renderGarage, renderMain} from './renders'
+import {renderCar, renderGarage, renderMain, renderWinners} from './renders'
 import {updateStore} from './components/pagination/pagination';
 import {store} from './store';
 import { generateRandomCars } from './utils';
@@ -18,7 +18,7 @@ const RENDER_HEADER =  renderMain();
 const createCarBtn = document.querySelector('.button.create-car') as HTMLButtonElement; 
 const updateCarBtn = document.querySelector('.button.update-car') as HTMLButtonElement; 
 const generateBtn = document.getElementById('generate') as HTMLButtonElement; 
-const resetBtn = document.getElementById('reset') as HTMLButtonElement; 
+ 
 const inputName = document.getElementById('input-create-name') as HTMLInputElement; 
 const inputColor = document.getElementById('input-create-color') as HTMLInputElement;
 let updateCarNameInput = document.getElementById('input-update-name') as HTMLInputElement; 
@@ -28,10 +28,6 @@ let selectedCar: CarObject;
 const main = document.querySelector('.main') as HTMLElement; 
 const app = document.getElementById('app') as HTMLElement; 
 
-console.log(app);
-console.log(store)
-
-
 
 const listens = async () => {
 
@@ -40,17 +36,18 @@ const listens = async () => {
       name: inputName.value,
       color: inputColor.value,
     }
-    await createCar(car);
-    
+    await createCar(car); 
   });
 
   generateBtn.addEventListener('click', async () => {
     const generatedCars = generateRandomCars(100); 
     generatedCars.map((item) => {
-       createCar(item); 
+       createCar(item);  
     })
-  })
-  
+    await updateStore();
+    app.innerHTML = `${renderGarage()}`;
+
+  })  
   
   main.addEventListener('click', async (event: Event) => {
     const target = event.target as HTMLButtonElement; 
@@ -99,7 +96,5 @@ const listens = async () => {
   })
 
 }
-
-
 listens();
 
