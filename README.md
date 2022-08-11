@@ -1,3 +1,3 @@
 # async-race
 
-Ребят, пока не проверяйте работу, оставьте пж контакты для связи. 
+https://miarur.github.io/async-race/public/index.html  
