@@ -1,5 +1,6 @@
 import { CarObject } from './types/apiTypes'
 import { store } from './store';
+import { getCars } from './api/api';
 
 export const renderCarImage = (color : string) => `
   <?xml version="1.0" encoding="iso-8859-1"?>
@@ -195,7 +196,7 @@ export const renderMain = async () => {
     </div>
   </div>
 
-  <div id='#app'>
+  <div id='app'>
     ${renderGarage()}
   </div>
   `;
@@ -243,4 +244,8 @@ export const renderWinners = () => {
 }
 
 
-
+export const updateStore = async () => {
+  const { cars, totalCount } = await getCars(store.carsPage);
+  store.cars = cars; 
+  store.carsCount = totalCount; 
+}

@@ -5,13 +5,13 @@ const garage = `${baseUrl}/garage`;
 const engine = `${baseUrl}/engine`; 
 const winners = `${baseUrl}/winners`; 
 
-// ([{key:'_page', value: 0}, {key: '_limit', value: 1}]);
+([{key:'_page', value: 0}, {key: '_limit', value: 1}]);
 export const generateQueryString = (queryParams: QueryParams[]) => queryParams.length
   ? `?${queryParams.map(item => `${item.key}=${item.value}`).join('&')}`
   : '';
 
-export const getCars = async(queryParams: QueryParams[]): Promise<IResponseCars> => {
-  const response = await fetch(`${garage}${generateQueryString(queryParams)}`); 
+export const getCars = async(page: number, limit?: number): Promise<IResponseCars> => {
+  const response = await fetch(`${garage}?_page=${page}&_limit=${limit}`); 
   return {
     cars: await response.json(), 
     totalCount: Number(response.headers.get('X-Total-Count')),

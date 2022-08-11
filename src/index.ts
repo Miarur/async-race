@@ -1,5 +1,6 @@
 import './index.css'
 import { 
+  getCars,
   getCar, 
   createCar, 
   updateCar, 
@@ -7,12 +8,13 @@ import {
 }
 from './api/api';
 import {CarObject } from './types/apiTypes';
-import {renderMain} from './renders'
+import {renderGarage, renderMain, updateStore} from './renders'
+
+import {store} from './store';
 
 
 
 const RENDER_HEADER =  renderMain();
-
 const createCarBtn = document.querySelector('.button.create-car') as HTMLButtonElement; 
 const updateCarBtn = document.querySelector('.button.update-car') as HTMLButtonElement; 
 const garageList = document.querySelector('.garage__list');
@@ -21,7 +23,14 @@ const inputColor = document.getElementById('input-create-color') as HTMLInputEle
 let updateCarNameInput = document.getElementById('input-update-name') as HTMLInputElement; 
 let updateCarColorInput = document.getElementById('input-update-color') as HTMLInputElement;  
 let selectedCar: CarObject; 
-console.log(inputName.value)
+
+const main = document.querySelector('.main') as HTMLElement; 
+const app = document.getElementById('app') as HTMLElement; 
+
+console.log(app);
+
+
+console.log(store)
 
 
 const listens = async () => {
@@ -31,11 +40,12 @@ const listens = async () => {
       name: inputName.value,
       color: inputColor.value,
     }
-    createCar(car)
+    await createCar(car);
+    
   });
   
   
-  garageList?.addEventListener('click', async (event: Event) => {
+  main?.addEventListener('click', async (event: Event) => {
     const target = event.target as HTMLButtonElement; 
     if(target.classList.contains('select-button')) {
       selectedCar = await getCar(Number(target.id.split('select-car-')[1]));
@@ -49,8 +59,15 @@ const listens = async () => {
       updateCar(Number(target.id.split('select-car-')[1]), selectedCar) 
     })
 
+    if(target.classList.contains('remove-button')) {
+      selectedCar = await getCar(Number(target.id.split('remove-car-')[1]));
+      let car = Number(selectedCar.id);
+      await deleteCar(car);
+      await updateStore();
+      console.log(app); 
+      app.innerHTML = `${renderGarage()}`;
+    }
   })
-
 
 }
 
