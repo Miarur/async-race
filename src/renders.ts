@@ -199,6 +199,10 @@ export const renderMain = async () => {
   <div id='app'>
     ${renderGarage()}
   </div>
+  <div class="pagination">
+    <button class="pagination-prev" id="prev" type="button">Prev</button>
+    <button class="pagination-next" id="next" type="button">Next</button>
+  </div>
   `;
   const root = document.createElement("div");
   root.classList.add('main')
@@ -244,8 +248,4 @@ export const renderWinners = () => {
 }
 
 
-export const updateStore = async () => {
-  const { cars, totalCount } = await getCars(store.carsPage);
-  store.cars = cars; 
-  store.carsCount = totalCount; 
-}
+

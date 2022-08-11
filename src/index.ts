@@ -8,8 +8,8 @@ import {
 }
 from './api/api';
 import {CarObject } from './types/apiTypes';
-import {renderGarage, renderMain, updateStore} from './renders'
-
+import {renderGarage, renderMain} from './renders'
+import {updateStore} from './components/pagination/pagination';
 import {store} from './store';
 
 
@@ -28,9 +28,11 @@ const main = document.querySelector('.main') as HTMLElement;
 const app = document.getElementById('app') as HTMLElement; 
 
 console.log(app);
-
-
 console.log(store)
+
+
+
+
 
 
 const listens = async () => {
@@ -45,7 +47,7 @@ const listens = async () => {
   });
   
   
-  main?.addEventListener('click', async (event: Event) => {
+  main.addEventListener('click', async (event: Event) => {
     const target = event.target as HTMLButtonElement; 
     if(target.classList.contains('select-button')) {
       selectedCar = await getCar(Number(target.id.split('select-car-')[1]));
@@ -66,6 +68,28 @@ const listens = async () => {
       await updateStore();
       console.log(app); 
       app.innerHTML = `${renderGarage()}`;
+    }
+
+    if(target.classList.contains('pagination-next')) {
+      switch (store.view) {
+        case 'garage': 
+          store.carsPage++;
+          console.log('store')
+          await updateStore(); 
+          app.innerHTML = `${renderGarage()}`;
+          break;
+      }
+    }
+
+    if(target.classList.contains('pagination-prev')) {
+      switch (store.view) {
+        case 'garage': 
+          store.carsPage--;
+          console.log('store')
+          await updateStore(); 
+          app.innerHTML = `${renderGarage()}`;
+          break;
+      }
     }
   })
 

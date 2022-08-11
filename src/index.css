@@ -224,3 +224,15 @@ table th {
     border-bottom: 0;
   }
 }
+
+.pagination {
+  margin-top: 30px;
+  margin-bottom: 60px;
+}
+
+.pagination-prev,
+.pagination-next {
+  background: #b1e232;
+  width: 150px;
+  margin-left: 20px;
+}

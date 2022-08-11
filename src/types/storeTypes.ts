@@ -4,4 +4,5 @@ export type State = {
   carsPage: number,
   cars: CarObject[],
   carsCount: number,
+  view?: string,
 }
