@@ -1,3 +1,3 @@
 # async-race
 
-https://miarur.github.io/async-race/public/index.html  
+https://miarur.github.io/async-race/
